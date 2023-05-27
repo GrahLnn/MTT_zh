@@ -207,3 +207,29 @@ Modified common nouns (modified $\mathrm{CN}$ ), when the adjectives are interse
 4. 更新记录字段：可以通过指定字段的标签和新值来更新记录中的特定字段的值。例如，可以更新人的记录中的地址字段的值为"456 Elm St"。
 
 类型理论中的记录类型提供了一种灵活和强大的数据建模方式，可以用于表示和操作具有复杂结构的数据。它们在编程语言、数据库和形式化验证等领域中都有广泛的应用。
+
+---
+
+It is important to note that a judgment is not a formula in the ordinary sense of logic. In particular, we cannot apply logical operators such as negation and conjunction to judgments. For instance, if we negated the judgment (2.1), the result would not be a judgment anymore: the "negation" of (2.1), often written as $\Gamma \nvdash_{\Delta} a: A$, is not a judgment, but only a meta-level statement saying that the judgment (2.1) is incorrect (or, in a formal jargon, (2.1) is non-derivable). (See section 3.2.3 for further discussions in this respect.) (2.1) $\Gamma \vdash_{\Delta} a: A$
+
+"Non-derivable"在这个上下文中，是指一个判断或公式不能从已知的规则或假设中推导出来。在形式逻辑中，如果一个判断是"derivable"，那么意味着我们可以通过一系列的推理步骤，从一组基本的假设或规则出发，得到这个判断。相反，如果一个判断是"non-derivable"，那么就意味着我们无法通过这样的推理步骤得到它。
+
+在你引用的这段文本中，作者提到，如果我们对判断（2.1）进行否定，那么结果将不再是一个判断：（2.1）的"否定"，通常写作$\Gamma \nvdash_{\Delta} a: A$，不是一个判断，而只是一个元层面的声明，表示判断（2.1）是不正确的（或者用形式术语来说，（2.1）是"non-derivable"的）。这意味着我们不能从已知的规则或假设中推导出判断（2.1）。
+
+在这个上下文中，$\Gamma \nvdash_{\Delta} a: A$ 并不是一个 judgment，而是一个元层面（meta-level）的声明。这个声明表示，我们不能从已知的规则或假设中推导出 judgment $\Gamma \vdash_{\Delta} a: A$。也就是说，$\Gamma \nvdash_{\Delta} a: A$ 并不是一个 judgment，而是一个对 judgment $\Gamma \vdash_{\Delta} a: A$ 的否定或反驳。
+
+这里的关键是，judgment 是类型理论中的基本断言或声明，而我们不能对这些基本断言应用逻辑运算符，如否定和合取。因此，$\Gamma \nvdash_{\Delta} a: A$ 并不是一个新的 judgment，而是一个元层面的声明，表示我们不能从已知的规则或假设中推导出原来的 judgment。
+
+在形式逻辑和类型理论中，$\vdash$ 符号通常用来表示"可推导"或"可证明"。例如，$\Gamma \vdash_{\Delta} a: A$ 表示在给定的语境 $\Gamma$ 和签名 $\Delta$ 下，我们可以推导出 $a$ 是类型 $A$ 的。
+
+当我们在 $\vdash$ 符号前加上否定符号 $\nvdash$，这就变成了表示"不可推导"或"不可证明"的符号。因此，$\Gamma \nvdash_{\Delta} a: A$ 表示在给定的语境 $\Gamma$ 和签名 $\Delta$ 下，我们不能推导出 $a$ 是类型 $A$ 的。
+
+这就是为什么 $\Gamma \nvdash_{\Delta} a: A$ 这个声明表示我们不能从已知的规则或假设中推导出 judgment $\Gamma \vdash_{\Delta} a: A$ 的原因。这是对原始判断的否定，但这个否定本身并不构成一个新的判断，而是一个元层面的声明。
+
+> 因为一个judgment必须使用 $\vdash$才是judgment，而当变成否定形式后则不是一个judgment，而只能是一种声明，如果将否定形式也当作judgment那么任意一种非当前$\Gamma$都能因为$\nvdash$而成为一个judgment，那么judgment就没意义了对吗
+
+是的，你的理解是正确的。在类型理论中，judgment 是一种基本的断言或声明，它描述了某种事实或关系，如 "$a$ 是类型 $A$ 的"。这些断言是可以被证明或推导出的，这就是为什么我们使用 $\vdash$ 符号来表示它们。
+
+当我们对一个 judgment 进行否定，我们实际上是在说这个 judgment 是不正确的，或者说我们不能从已知的规则或假设中推导出这个 judgment。这种否定本身并不构成一个新的 judgment，因为它并不描述一个可以被证明或推导出的事实或关系。相反，那它是一个元层面的声明，表示我们不能证明或推导出原来的 judgment。
+
+如果我们允许否定形式也成为 judgment，那么我们就会面临你所描述的问题：任何非当前的 $\Gamma$ 都可以因为 $\nvdash$ 而成为一个 judgment，这将使得 judgment 的概念失去意义。因此，我们只将那些可以被证明或推导出的断言视为 judgment，而将否定形式视为元层面的声明。
