@@ -317,3 +317,63 @@ $$
 例如，考虑一个函数定义 $\lambda x . x + y$。在这个函数体中，$x$ 是一个绑定变量，因为它被 $\lambda$ 表达式所绑定。然而，$y$ 是一个自由变量，因为它在函数体中出现，但并没有被绑定到任何特定的值。这就意味着，如果我们想要计算这个函数的值，我们需要知道 $y$ 的值。
 
 在这个段落中，当说 $b$ 和 $B$ 可能依赖于 $x$ 时，意思是 $x$ 可能在 $b$ 或 $B$ 中自由出现，即 $b$ 或 $B$ 的值可能取决于 $x$ 的值。
+
+---
+
+> To explain in terms of the above example, when a function $f$ of type $\Pi x$ : Human. Child $(x)$ ) (or, $\Pi$ (Human, Child) in another notation) is applied to a human $h$, its image $f(h)$ has to be a child of $h$, i.e. of type Child $(h)$, not something else.
+
+在这个上下文中，"image" 是数学术语，指的是函数作用于其定义域中的元素后得到的结果。换句话说，如果你有一个函数 $f$，并且你将它应用于某个元素 $x$，那么 $f(x)$ 就是 $x$ 在函数 $f$ 下的像（image）。这个术语来自于函数映射的概念，即函数将其定义域中的每个元素 "映射" 到其值域中的某个元素。
+
+在你提供的这段文本中，当函数 $f$（类型为 $\Pi x$ : Human. Child $(x)$）应用于一个人 $h$ 时，它的像 $f(h)$ 必须是 $h$ 的一个孩子，即类型为 Child $(h)$，而不是其他的什么。
+
+---
+
+> 非依赖对的平庸乘积类型 $A \times B$ 是依赖的 $\Sigma$ 类型的一个特例。例如，如果 $Woman$ 是女性的类型，那么乘积类型 $Man\times Woman$ 就是普通对 $(m, w)$ 的类型，使得 $m: M a n$ 和 $w: W o m a n$。乘积类型 $Man \times Woman$ 与 $\Sigma$ 类型 $\Sigma x: Man. W(x)$ 是相同的，其中类型的常数族 $W(x)= Woman$。
+
+"Ordinary product"在这里指的是非依赖性的乘积类型。在类型理论中，乘积类型（也称为元组类型或对类型）是一种复合类型，它的值是两个类型值的对。例如，如果A和B是类型，那么A×B就是乘积类型，它的值是形如(a, b)的对，其中a是A的值，b是B的值。
+
+当我们说"ordinary product"时，我们是在区分它和依赖性乘积类型（在这个上下文中，是Σ类型）。依赖性乘积类型是一种更一般的乘积类型，它的第二个组成部分可以依赖于第一个组成部分的值。在你的例子中，Σx: Man. W(x)就是一个依赖性乘积类型，因为W(x)（即Woman）是依赖于x的类型。
+
+所以，当我们说Man × Woman是一个"ordinary product"时，我们的意思是，它是一个非依赖性的乘积类型，它的值是形如(m, w)的对，其中m是Man的值，w是Woman的值，而且w的类型（Woman）并不依赖于m的值。
+
+"Constant family"是指一个类型族，其中每个类型都是相同的，不依赖于索引。在类型理论中，类型族是一种类型的集合，其中每个类型都与一个或多个索引值相关联。例如，我们可以有一个类型族，其中每个自然数n都有一个对应的类型，如"长度为n的整数列表"。
+
+然而，如果我们有一个"constant family"，那么每个索引值都关联到相同的类型。在你的例子中，"W(x) = Woman"就是一个常数族，因为无论x的值是什么（在这种情况下，x是Man的一个值），W(x)的类型都是Woman。换句话说，这个类型族是"常数的"，因为它不依赖于索引x。
+
+---
+
+> In general, $\Sigma$-types can be regarded as types of tuples since their formation can be nested. A nested $\Sigma$-type $\Sigma x_{1}: A_{1} \Sigma x_{2}: A_{2} \ldots \Sigma x_{n-1}: A_{n-1} . A_{n}$ can be written by means of the following notation and, intuitively, its objects are $n$-tuples of terms of the respective types.  $\left\{\begin{array}{lll} x_{1} & : & A_{1} \\ x_{2} & : & A_{2} \\ \cdots & & \\ x_{n} & : & A_{n} \end{array}\right\}$
+
+在这个例子中，$\Sigma$-类型被视为元组的类型，因为它们的形成可以是嵌套的。这里的嵌套$\Sigma$-类型$\Sigma x_{1}: A_{1} \Sigma x_{2}: A_{2} \ldots \Sigma x_{n-1}: A_{n-1} . A_{n}$可以被写成这样的形式，直观上，它的对象是各自类型的$n$元组。
+
+这个表示法的意思是，我们有一个$n$元组，其中每个元素$x_i$都有一个对应的类型$A_i$。这个表示法省略了$\Sigma$符号，因为它的目的是强调这个类型的元素是元组，而不是强调这个类型是通过$\Sigma$类型构造的。
+
+在这个表示法中，$\Sigma$符号被省略了，因为这个表示法的目的是强调元组的结构，而不是$\Sigma$类型的结构。这个表示法是一种方便的方式，用来描述一个类型的元素是如何组织成元组的。
+
+这个嵌套的$\Sigma$-类型$\Sigma x_{1}: A_{1} \Sigma x_{2}: A_{2} \ldots \Sigma x_{n-1}: A_{n-1} . A_{n}$可以被视为元组$(x_1, (x_2, ..., (x_{n-1}, x_n)...))$的类型，其中每个$x_i$都有对应的类型$A_i$。这种表示方式强调了元组的结构，即元素的顺序和层级关系。
+
+---
+
+> Note that Prop is an impredicative universe because we can quantify over Prop itself (or even "larger" types) to form logical propositions in Prop. For example, $\forall X$ : Prop. $X$ is of type Prop and, in fact, this proposition can serve as the false formula since it intuitively means that every proposition is provable (and by logical consistency, this is not the case and, hence, the formula is not provable).
+
+括号中的注释是在解释为什么公式 $\forall X : Prop$ . $X$ 可以被视为 "假" 公式。这个公式的意思是 "对于所有的命题 X，X 是可证明的"。然而，根据逻辑一致性原则，我们知道并非所有的命题都是可证明的。有些命题是假的，因此不能被证明。因此，公式 $\forall X$ : Prop. $X$ 本身就是不可证明的，因此可以被视为 "假" 公式。
+
+---
+
+> REMARK.- As the reader may have noticed, the universally quantified proposition $\forall x: A . P(x)$ is very similar to a П-type. Their difference is that $\forall$-formation can be impredicative, while $\Pi$-formation is always predicative in the sense that we cannot use $\Pi$ for impredicative quantification. In some type theories, one actually overloads $\Pi$ to allow it to express $\forall$ as well: that is, in those type theories such as ECC (Luo 1994) and Coq's type theory (Coq 2010), $\forall x: A . P(x)$ is also written as $\Pi x: A . P(x)$.
+
+这段话主要在讨论全称量词 $\forall$ 和 Π 类型之间的相似性和差异。
+
+首先，作者指出全称量词 $\forall x: A . P(x)$ 和 Π 类型在形式上非常相似。这两者都表示了对于所有的 $x$ 属于类型 $A$，有某个性质 $P(x)$ 成立。
+
+然后，作者指出这两者的主要区别在于，全称量词 $\forall$ 可以是不可约化的（impredicative），而 Π 类型则总是可约化的（predicative）。这里的 "可约化" 和 "不可约化" 是指在定义类型或性质时，是否可以引用到包含自身的更大的类型或集合。如果可以，那么就是不可约化的；如果不可以，那么就是可约化的。
+
+最后，作者提到在一些类型理论中，例如 ECC（Luo 1994）和 Coq 的类型理论（Coq 2010），允许使用 Π 来表示全称量词 $\forall$。也就是说，这些理论中的 $\forall x: A . P(x)$ 也可以写作 $\Pi x: A . P(x)$。这种情况下，Π 类型被 "重载" 了，它既可以表示 Π 类型，也可以表示全称量词。
+
+"可约化"（predicative）和"不可约化"（impredicative）是逻辑和类型理论中的概念，主要用来描述定义的自指性质。
+
+在可约化（predicative）的定义中，我们不能引用到包含定义自身的更大的类型或集合。例如，我们可以定义一个集合，它包含所有的自然数。这个定义是可约化的，因为在定义这个集合时，我们并没有引用到包含这个集合本身的更大的集合。
+
+相反，在不可约化（impredicative）的定义中，我们可以引用到包含定义自身的更大的类型或集合。例如，我们定义一个集合，它包含所有不包含自身的集合。这个定义是不可约化的，因为在定义这个集合时，我们引用了包含这个集合本身的更大的集合（即所有的集合）。
+
+这个概念在类型理论和逻辑中非常重要，因为它关系到定义的合理性和一致性。在某些类型理论和逻辑系统中，不可约化的定义可能会导致悖论，因此被禁止。
