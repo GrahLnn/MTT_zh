@@ -377,3 +377,31 @@ $$
 相反，在不可约化（impredicative）的定义中，我们可以引用到包含定义自身的更大的类型或集合。例如，我们定义一个集合，它包含所有不包含自身的集合。这个定义是不可约化的，因为在定义这个集合时，我们引用了包含这个集合本身的更大的集合（即所有的集合）。
 
 这个概念在类型理论和逻辑中非常重要，因为它关系到定义的合理性和一致性。在某些类型理论和逻辑系统中，不可约化的定义可能会导致悖论，因此被禁止。
+
+---
+
+> Each universe $U_{i}$ contains names of the types in the universe and $T_{i}$ is the function that maps a name to the named type. For instance, for each $U_{i}$, we introduce a name $u_{i}$ in $U_{i+1}$ and $u_{i}$ is a name of $U_{i}$ because $T_{i+1}\left(u_{i}\right)=U_{i}$. Furthermore, (a name of) each type in $U_{i}$ is lifted to the higher universe $U_{i+1}$ by introducing lifting operators $t_{i+1}(i \in \omega)$
+
+在类型理论中，"宇宙"（Universe）是一种特殊的类型，它的成员本身也是类型。这种结构允许我们在类型理论中谈论和操作类型。这是一种处理类型的元理论（metatheory）问题的方式，比如允许我们定义取决于类型的函数。
+
+在你引用的段落中，每个宇宙 $U_{i}$ 包含了它所包含的类型的名称，而 $T_{i}$ 是一个函数，它将一个名称映射到被命名的类型。例如，对于每个 $U_{i}$，我们在 $U_{i+1}$ 中引入一个名称 $u_{i}$，并且 $u_{i}$ 是 $U_{i}$ 的一个名称，因为 $T_{i+1}(u_{i}) = U_{i}$。此外，$U_{i}$ 中每个类型的名称都被提升到更高的宇宙 $U_{i+1}$，通过引入提升操作符 $t_{i+1}(i \in \omega)$。
+
+这里的 "提升" 是指将类型从一个宇宙转移到另一个更大的宇宙。这是一种处理类型的层次结构的方式，允许我们在不同的 "级别" 上操作类型。
+
+---
+
+> 在签名中可以声明强制子类型化条目。正式来说，系统 $\mathrm{LF}_{\Delta}$ 通过子类型化的断言形式 $\Gamma \vdash_{\Delta} A \leq_{\kappa} B:\text{Type}$ 和子类型化 $\Gamma \vdash_{\Delta} K \leq_{\kappa} K^{\prime}$ 进行了扩展。通过以下规则，可以在签名中引入子类型化条目：
+> $$
+> \frac{\vdash_{\Delta} A: \text { Type }\quad \vdash_{\Delta} B: \text { Type }\quad \vdash_{\Delta} \kappa:(A) B}{\Delta, A \leq_{\kappa} B\ \text{ valid}}
+> $$
+> 在签名中假定的子类型关系是可推导的，如以下规则所反映：
+> $$
+> \frac{\vdash_{\Delta, A\leq_{\kappa} B, \Delta^{\prime}} \Gamma}{\Gamma \vdash_{\Delta, A \leq_{\kappa} B, \Delta^{\prime}} A \leq_{\kappa} B: \text{Type}}
+> $$
+> 那么，虽然扩展了带有签名的断言，但是强制子类型化的规则（Luo等人，2012）都是适用的。例如，如果在签名 $\Delta$ 下，可以证明 $A \leq_{\kappa} B$ 和 $B \leq_{\kappa^{\prime}} C$ ，那么我们就可以推导出在 $\Delta$ 下$A \leq_{\kappa^{\prime} \circ \kappa} C$，其中 $\kappa^{\prime} \circ \kappa$ 是 $\kappa$ 和 $\kappa^{\prime}$ 的函数组合[functional composition]。
+
+在数学中，"函数组合"（function composition）是一种操作，它将两个函数连接在一起，形成一个新的函数。给定两个函数 $\kappa$ 和 $\kappa^{\prime}$，它们的组合 $\kappa^{\prime} \circ \kappa$ 是一个新的函数，这个新函数首先应用函数 $\kappa$，然后将结果输入到函数 $\kappa^{\prime}$ 中。
+
+在这个上下文中，$\kappa$ 和 $\kappa^{\prime}$ 是类型转换函数，它们描述了如何从一个类型转换到另一个类型。函数组合 $\kappa^{\prime} \circ \kappa$ 描述了一个复合的类型转换：首先应用 $\kappa$，然后应用 $\kappa^{\prime}$。
+
+例如，假设我们有两个类型转换函数 $\kappa$ 和 $\kappa^{\prime}$，其中 $\kappa$ 将类型 A 转换为类型 B，$\kappa^{\prime}$ 将类型 B 转换为类型 C。那么，函数组合 $\kappa^{\prime} \circ \kappa$ 将描述一个从类型 A 直接转换到类型 C 的过程。
