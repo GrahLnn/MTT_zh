@@ -405,3 +405,19 @@ $$
 在这个上下文中，$\kappa$ 和 $\kappa^{\prime}$ 是类型转换函数，它们描述了如何从一个类型转换到另一个类型。函数组合 $\kappa^{\prime} \circ \kappa$ 描述了一个复合的类型转换：首先应用 $\kappa$，然后应用 $\kappa^{\prime}$。
 
 例如，假设我们有两个类型转换函数 $\kappa$ 和 $\kappa^{\prime}$，其中 $\kappa$ 将类型 A 转换为类型 B，$\kappa^{\prime}$ 将类型 B 转换为类型 C。那么，函数组合 $\kappa^{\prime} \circ \kappa$ 将描述一个从类型 A 直接转换到类型 C 的过程。
+
+---
+
+> 同样，量词也可以通过在宇宙 $\mathsf{CN}$ 上的 $\Pi$ 多态性进行类型化。以一个简单的例子来说，量词"some"可能通过逻辑量词 $\exists$ 在(3.12)中定义，以 $\mathsf{CN}$ 作为其限定的域，其类型化为(3.13)，如表3.1所示，即与可以应用到任何类型的逻辑量词 $\exists$ 不同，"some"只能解释 $\mathrm{CN}$ 。
+>
+> (3.12) $\text{some} =\lambda A: \mathsf{CN}\ \lambda P: A \rightarrow Prop. \exists(A, P)$
+>
+> (3.13) $\text{some} : \Pi A : \mathsf{CN}. (A \rightarrow \operatorname{Prop}) \rightarrow \operatorname{Prop}$
+
+在这个例子中，"some" 被定义为一个函数，这个函数接受两个参数：一个类型 A（在这里，A 是 CN，表示一类事物，如 "man" 或 "table"）和一个谓词 P（这是一个从 A 到 Prop 的函数，表示 A 的某种属性或条件）。
+
+这个函数的定义是通过 lambda 表达式给出的，这是一种在函数式编程中常用的表示匿名函数（即没有名字的函数）的方式。在这个表达式中，"λA: CN" 表示 "对于所有的类型 A 在 CN 中"，"λP: A -> Prop" 表示 "对于所有的谓词 P，它是一个从 A 到 Prop 的函数"。
+
+然后，"∃(A, P)" 表示存在一个 A 类型的对象，它满足谓词 P。所以，整个表达式的意思是 "对于所有的类型 A 和所有的谓词 P，存在一个 A 类型的对象满足 P"，这就是 "some" 的含义：存在某种类型的对象满足某种条件。
+
+在 (3.13) 中，"some" 的类型是 "对于所有的类型 A，从 A 到 Prop 的函数到 Prop"，这表示 "some" 是一个函数，它接受一个类型 A 和一个从 A 到 Prop 的函数，然后返回一个 Prop。这就是说，"some" 是一个量词，它可以应用于一个类型和一个谓词，然后返回一个命题。
