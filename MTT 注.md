@@ -421,3 +421,80 @@ $$
 然后，"∃(A, P)" 表示存在一个 A 类型的对象，它满足谓词 P。所以，整个表达式的意思是 "对于所有的类型 A 和所有的谓词 P，存在一个 A 类型的对象满足 P"，这就是 "some" 的含义：存在某种类型的对象满足某种条件。
 
 在 (3.13) 中，"some" 的类型是 "对于所有的类型 A，从 A 到 Prop 的函数到 Prop"，这表示 "some" 是一个函数，它接受一个类型 A 和一个从 A 到 Prop 的函数，然后返回一个 Prop。这就是说，"some" 是一个量词，它可以应用于一个类型和一个谓词，然后返回一个命题。
+
+---
+
+> As noticed in Chatzikyriakidis and Luo (2017b), employing both types and predicates as representations of CNs would need to assume that they be related as intended: for instance, the CN "man" can be interpreted as both a type $M a n$ and a predicate $\operatorname{man}_{M}: \mathbf{e} \rightarrow \mathbf{t}$. Then, it is unclear how the two interpretations can be related in the intended way, as described as $(*)$ :
+>
+> $(*)$ For any $x: \mathbf{e}$, $x: Man$ if and only if $\operatorname{man}_{M}(x)$ is true.
+>
+> Unfortunately, such a requirement $(*)$ does not seem to be achievable (or reasonable to assume) without violating the key necessary properties such as decidability of type-checking in MTTs. One might use a modern type theory as a foundational semantic language but still adopt the CNs-as-predicates paradigm (for example, in DTS - see footnote 27 on p.16); but this would mean that we would lose the advantages of the CNs-as-types paradigm as mentioned above and, actually, we would not need the rich type structure of MTTs at all - the semantics can already be done in the same or similar way as in Montague semantics that uses simple type theory. 
+
+这段话主要在讨论名词短语（CNs）如何在类型理论中被解释。它提到，CNs可以被解释为类型（例如 "man" 可以被解释为一个类型 "Man"）或者谓词（例如 "man" 可以被解释为一个谓词 "man_M"，它是一个从实体到真值的函数）。然后，作者提出了一个问题，即如何在预期的方式下关联这两种解释。他们给出了一个需求 (*)，即对于任何实体 x，x 是 "Man" 类型当且仅当 "man_M(x)" 为真。
+
+然而，作者指出，这样的需求 (*) 似乎无法实现，或者说假设它是合理的会违反类型理论中的一些关键性质，如类型检查的可判定性。作者提到，人们可能会使用现代类型理论作为基础的语义语言，但仍然采用 CNs-as-predicates 的范式（例如，在 DTS 中，见第16页的脚注27）；但这将意味着我们会失去上述 CNs-as-types 范式的优点，实际上，对于这种情形我们根本不需要 MTTs 的丰富类型结构 - 语义可以已经以与 Montague 语义（使用简单类型理论）相同或类似的方式完成。
+
+---
+
+> The subtyping relations (3.30) and (3.31) can be represented by coercive subtyping. If $M a n$ is a constant type, we may assume that there is a constant coercion $m h$ such that Man $\leq_{m h}$ Human. If it is defined as a $\Sigma$-type by Man $=\Sigma x$ :Human.male $(x)$, then Man is a subtype of Human by means of (3.33): the first projection is a coercion from $\Sigma x: A . P(x)$ to $A$ for every type $A$ and predicate $P: A \rightarrow$ Prop . 
+>
+> (3.30) $Man \leq Human$  (Every man is a human.) 
+>
+> (3.31) $\Sigma x :Book.heavy (x) \leq Book$  (Every heavy book is a book.) 
+>
+> (3.32) $( Human \rightarrow Book \rightarrow Prop ) \leq( Man \rightarrow \Sigma x: Book.heavy (x) \rightarrow Prop )$ 
+>
+> (3.33) $\Sigma x: A . P(x) \leq_{\pi_{1}} A$
+
+在类型理论中，第一投影函数 $\pi_1$ 可以从一个成对的类型（也就是 $\Sigma$ 类型）提取出第一个元素。例如，如果我们有一个类型为 $\Sigma x: A . P(x)$ 的元素，那么我们可以使用 $\pi_1$ 来获取类型为 $A$ 的元素。
+
+在这个上下文中，$\pi_1$ 被用作一种强制子类型（coercion），这是因为它可以将 $\Sigma x: A . P(x)$ 类型的元素 "强制" 转换为 $A$ 类型的元素。这就是为什么 $\Sigma x: A . P(x)$ 被视为 $A$ 的子类型，因为我们可以通过 $\pi_1$ 将其元素转换为 $A$ 类型。
+
+所以，$\pi_1$ 在这里被视为一种强制子类型（coercion），因为它提供了一种从 $\Sigma$ 类型到其第一个元素类型的转换方法。
+
+---
+
+> 同样，厚重的书也是书，这也是由于(3.33)，我们有 $heavy\ book=\Sigma x :Book.heavy (x) \leq Book$ 。子类型关系(3.30)和(3.31)被实现后，公式(3.27-3.29)类型正确且它们分别解释了(3.24-3.26)中的句子。请注意，尽管在强制子类型（coercive subtyping）中可以使用投影子类型关系[projective subtyping relation]（如公式3.33所示），但在传统的包容子类型[subsumptive subtyping]中，这种关系是不可用的。
+
+这句话的意思是，尽管在强制子类型（coercive subtyping）中可以使用投影子类型关系（projective subtyping relation）（如公式3.33所示），但在传统的包容子类型（subsumptive subtyping）中，这种关系是不可用的。
+
+这里的 "投影子类型关系" 指的是使用投影函数（如 $\pi_1$）来从一个更复杂的类型（如 $\Sigma$ 类型）提取出一个子类型。而 "包容子类型" 是指一个类型可以被视为其超类型的子类型，但没有明确的转换或提取过程。
+
+所以，这句话的意思是，虽然在强制子类型中可以使用投影函数来创建子类型关系，但在传统的子类型系统中，这种方法是不可用的。
+
+---
+
+> REMARK.- Because CNs are interpreted as types (e.g. some modified CNs as $\Sigma$-types), a verb may need to have many different types. For example, in the above, "read" would need to have both types in (3.32) so that the semantic interpretations (3.27-3.29) can be well-typed. This is a very basic problem for MTT-semantics and its solution is necessary. It was recognized by Ranta (1994) (pp. 62-64), where it was called the problem of "multiple categorization of verbs", and three possible solutions were considered, but none of them is satisfactory. One of them is closest to ours where the first projection $\pi_{1}$ was employed explicitly - this is one step short of a complete solution. Using coercive subtyping (e.g. employing $\pi_{1}$ as an implicit coercion), we have managed to arrive at a solution to capture the phenomena as intended.
+
+这段话的主要观点是，由于名词短语（CNs）被解释为类型（例如，一些修改过的名词短语被解释为Σ-类型），一个动词可能需要有多种不同的类型。例如，在上文中，"read" 需要具有公式（3.32）中的两种类型，以便语义解释（3.27-3.29）可以被正确地类型化。这是现代类型理论语义学（MTT-semantics）的一个基本问题，需要找到解决方案。
+
+Ranta（1994）在他的作品中（第62-64页）提出了这个问题，称之为"动词的多重分类问题"，并考虑了三种可能的解决方案，但没有一种是令人满意的。其中一种解决方案最接近我们的方法，它显式地使用了第一投影函数 $\pi_{1}$，但这还不是一个完整的解决方案。
+
+通过使用强制子类型（例如，将 $\pi_{1}$ 作为隐式的强制函数），我们设法找到了一个解决方案，以捕捉到预期的现象。
+
+"隐式强制"是一种编程语言的特性，它允许一种类型自动转换为另一种类型。这种转换是隐式的，也就是说，编程语言的编译器或解释器会在需要的时候自动进行这种转换，而无需程序员显式地指定。
+
+在这个上下文中，"隐式强制"是指在类型理论中，当我们有一个类型A和一个子类型B时，我们可以隐式地将类型B的实例强制转换为类型A的实例。这是通过使用一个强制函数（在这个例子中是第一投影函数 $\pi_{1}$）来实现的。这个强制函数定义了如何将子类型的实例转换为父类型的实例。
+
+这种隐式强制的机制允许我们在处理具有复杂类型结构的语言（如自然语言）时，更灵活地处理类型。例如，一个动词可能需要与多种名词短语（每种名词短语可能有不同的类型）一起使用，隐式强制可以使这种情况下的类型处理变得更加简单。
+
+---
+
+> 假设"w"是一个同音异义词 $w_{i}: A_{i}(i=$ $1, \ldots, n$ ) ，如果 $j \neq k$ 则 $A_{j} \neq A_{k}$。让 $\mathbf{1}_{w}$ 表示只有一个对象 $w: \mathbf{1}_{w}$ 的归纳单元类型[inductive unit type]（有关单元类型的形式细节，请参见附录A2.4）。然后，同音词"w"的含义可以表示为强制转换子 $c_{i}: \mathbf{1}_{w} \rightarrow A_{i} (i=1, \ldots, n)$ ，定义如下：
+> $$
+> c_{i}(w)=w_{i}: A_{i}
+> $$
+
+这段话是在描述如何使用强制子类型（coercive subtyping）来处理同形异义词（homonym）的问题。同形异义词是指那些拼写相同但含义不同的词，例如英语中的 "run" 可以表示 "跑步"，也可以表示 "经营"。
+
+假设 "w" 是一个具有不同含义的同形异义词，每个含义用 $w_{i}: A_{i}$ 表示，其中 $i$ 是从 1 到 n 的整数，$A_{j}$ 和 $A_{k}$ 是不同的类型，只有当 $j$ 不等于 $k$ 时。
+
+然后，引入了一个名为 $\mathbf{1}_{w}$ 的单元类型（unit type），它只有一个对象 $w: \mathbf{1}_{w}$。单元类型是一种特殊的类型，它只有一个元素，通常用于表示没有实际信息的情况。
+
+接下来，定义了一系列的强制子类型 $c_{i}: \mathbf{1}_{w} \rightarrow A_{i}$，其中 $i$ 是从 1 到 n 的整数。这些强制子类型的作用是将单元类型 $\mathbf{1}_{w}$ 转换为其他类型 $A_{i}$。具体的转换规则是 $c_{i}(w)=w_{i}: A_{i}$，也就是说，将 $w$ 映射到 $w_{i}$。
+
+通过这种方式，同形异义词 "w" 的不同含义可以通过不同的强制子类型来表示，从而解决了同形异义词的处理问题。
+
+单元类型（Unit Type）是类型理论中的一个基本概念。它是一种特殊的类型，只包含一个元素，通常表示为 "()" 或 "1"。你可以将其视为编程语言中的 "void" 类型或者 "null" 类型，它不包含任何实际的信息。
+
+单元类型并不像基向量那样用于构建空间。基向量是线性代数中的概念，一组基向量可以张成一个向量空间，每个向量都可以表示为基向量的线性组合。而单元类型更像是一个标记或者占位符，它本身并不包含任何信息，但在类型理论的上下文中，它可以用来表示某些特殊的情况，例如一个函数没有返回值，或者一个数据结构没有实际的数据等。
