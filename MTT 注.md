@@ -508,3 +508,63 @@ Ranta（1994）在他的作品中（第62-64页）提出了这个问题，称之
 这个函数的定义是分段的，意味着它的输出取决于输入满足的条件。具体来说，如果人 \(h\) 写了书 \(b\)，那么函数 \(c(h, b)\) 的输出就是事件 "人 \(h\) 写书 \(b\)"。如果人 \(h\) 没有写书 \(b\)，那么函数 \(c(h, b)\) 的输出就是事件 "人 \(h\) 读书 \(b\)"。
 
 这个函数的目的是为了在给定一个人和一本书的情况下，确定一个合适的事件。这个事件可以是写书，也可以是读书，取决于人和书的具体关系。这个函数的定义反映了一种语言强制性，即在给定的上下文中，一本书可以被强制解释为与某个事件相关联。
+
+---
+
+> 有了以上内容，我们现在可以将（3.48）解释为（3.51）（简化形式），其中 $j$ 和 $t$ 分别解释 "Julie" 和 "Tolstoy"，而 $\Sigma b: Book.long (b)$ 是解释"长篇书[long book]"的 $\Sigma$-类型。在强制子类型中，（3.51）被强制转换并等同于（3.52），它在插入（3.49）中指定的强制转换后，变成了（3.53）。 
+>
+> (3.51)  $$ \begin{align} &\ \ \operatorname{start}(j, W \& P)\\ &\wedge \operatorname{finish}(t, W \& P)\\ &\wedge \neg \operatorname{last}(j, W \& P)\\ &\wedge \forall l b:(\Sigma b: Book.long (b)) . \neg \operatorname{finish}\left(j, \pi_{1}(l b)\right) \end{align} $$ 
+>
+> (3.52)  $$ \begin{align} &\ \ \operatorname{start}(j, c(j, W \& P))\\ &\wedge \operatorname{finish}(t, c(t, W \& P))\\ &\wedge \neg \operatorname{last}(j, c(j, W \& P))\\ &\wedge \forall l b:(\Sigma b: Book.long (b)) . \neg \operatorname{finish}\left(j, c\left(j, \pi_{1}(l b)\right)\right) \end{align} $$ 
+>
+> (3.53)  $$ \begin{align} &\ \ \operatorname{start}(j, \operatorname{read}(j, W \& P))\\ &\wedge \operatorname{finish}(t, \operatorname{write} (t, W \& P))\\ &\wedge \neg \operatorname{last}(j, \operatorname{read}(j, W \& P))\\ &\wedge \forall l b:(\Sigma b: Book.long (b)) . \neg \operatorname{finish}\left(j, c\left(j, \pi_{1}(l b)\right)\right) \end{align} $$ 
+>
+> 为了更详细地解释，我们有关于 $start$（每个上述公式的第一行）的以下等式： $$ \operatorname{start}(j, W \& P)=\operatorname{start}(j, c(j, W \& P))=\operatorname{start}(j, \operatorname{read}(j, W \& P)) $$ 
+>
+> 第一个等式成立是因为 $\operatorname{start}(j): \operatorname{Evt}_{A}(j) \rightarrow \operatorname{Prop}$ 和 $W \& P: B o o k \leq_{c(j)} Evt_{A}(j)$，而第二个等式则根据 $c(j)$ 的定义。对于 $finish$ 和 $last$ 来说也是类似的。 如果仔细阅读，(3.53)就是(3.48)的预期语义。注意，在(3.53)的最后一个连词中，强制子 $c$ 仍然存在， $c\left(j, \pi_{1}(l b)\right)$ 无法进一步简化，因为 $l b$ 是个变量。
+
+这些公式是在形式化描述句子(3.48)的语义。这个句子是："朱莉刚开始读《战争与和平》，这是托尔斯泰经过多年辛勤努力才完成的作品。但这种状况不会持久，因为她从未读完过长篇小说。"
+
+公式(3.51)是对这个句子的直接翻译，其中 \(j\) 和 \(t\) 分别代表 "Julie" 和 "Tolstoy"，而 \(W \& P\) 代表 "War and Peace"。这个公式的每一部分都对应句子的一部分：
+
+- \(\operatorname{start}(j, W \& P)\) 对应 "Julie开始读《战争与和平》"
+- \(\operatorname{finish}(t, W \& P)\) 对应 "托尔斯泰完成《战争与和平》"
+- \(\neg \operatorname{last}(j, W \& P)\) 对应 "Julie不会持续阅读《战争与和平》"
+- \(\forall l b:(\Sigma b: Book.long (b)) . \neg \operatorname{finish}\left(j, \pi_{1}(l b)\right)\) 对应 "Julie从未读完过长篇小说"
+
+然后，公式(3.52)和(3.53)是在应用强制子类型化后的公式。强制子类型化是一种语言学现象，其中一个类型可以被强制转换为另一个类型。在这个例子中，书 \(Book\) 被强制转换为事件 \(Event\)，因为在这个上下文中，一本书被理解为与某个事件（如读书或写书）相关联。
+
+在公式(3.52)中，所有的 \(W \& P\) 都被替换为 \(c(j, W \& P)\)，其中 \(c\) 是强制操作。然后在公式(3.53)中，这个强制操作被进一步解析为具体的事件，例如 \(\operatorname{read}(j, W \& P)\) 或 \(\operatorname{write}(t, W \& P)\)。
+
+最后，公式(3.53)的最后一部分，\($\forall l b:(\Sigma b: Book.long (b)) . \neg \operatorname{finish}\left(j, c\left(j, \pi_{1}(l b)\right)\right)$\)，表示 "对于所有的长篇小说 \(l b\)，Julie都没有完成阅读这本书"。这里的 \(c\left(j, \pi_{1}(l b)\right)\) 不能进一步简化，因为 \(l b\) 是一个变量，我们不知道它具体代表哪本书。
+
+在这个上下文中，\(\wedge\) 符号代表逻辑与（AND）操作。这是一种逻辑运算符，用于连接两个逻辑表达式，只有当这两个表达式都为真时，整个表达式才为真。
+
+例如，在公式(3.51)中，\($\operatorname{start}(j, W \& P) \wedge \operatorname{finish}(t, W \& P)$\) 表示 "Julie开始读《战争与和平》" 和 "托尔斯泰完成《战争与和平》" 这两个事件都发生。
+
+同样，$(\neg \operatorname{last}(j, W \& P) \wedge \forall l b:(\Sigma b: Book.long (b)) . \neg \operatorname{finish}\left(j, \pi_{1}(l b)\right)$\) 表示 "Julie不会持续阅读《战争与和平》" 和 "对于所有的长篇小说 \(l b\)，Julie都没有完成阅读这本书" 这两个事件都发生。
+
+---
+
+> (3.64) 对于任意 $x: A$ ，有 $p_{A}(x)= \mathbf{true}$ (3.65) $p_{\text {Human }}(j) \wedge \operatorname{happy}(j)$ 请注意，虽然 $p_{A}$ 是一个简单的常量谓词，但它非平凡[non-trivial]，因为 $p_{A}(a)$ 的类型正确性预设了 $a$ 的类型为 $A$ 。换言之，$p_{A}(a)$ 的真实性（在元理论上）等同于断言 $a: A$ 的正确性（可推导性）。例如，当切仅当 $j: Human$ 可推导，$p_{\text {Human }}(j)$ 才为真。这就是为什么我们可以使用 $p_{A}(a)$ 作为可推导断言 $a: A$ 的命题形式。
+
+"非平凡"（non-trivial）是指一个事物或概念具有一定的复杂性或深度，而不是简单的、明显的或容易理解的。这个词常常用于数学和逻辑学中，用来描述一个问题、定理或证明具有一定的复杂性或深度。
+
+相对的，"平凡"（trivial）在数学和逻辑学中通常用来描述一个问题、定理或证明是简单的、明显的或容易理解的。例如，一个平凡的解决方案可能是一个问题的最简单、最直接或最明显的解决方案。
+
+在这个特定的上下文中，作者指出虽然 $p_{A}$ 是一个简单的常量谓词，但它是"非平凡的"，因为 $p_{A}(a)$ 的类型正确性预设了 $a$ 的类型为 $A$。这意味着，尽管 $p_{A}$ 看起来很简单，但它实际上在类型系统中扮演了一个重要的角色，这使得它成为一个"非平凡"的概念。
+
+---
+
+> $\mathrm{\small NOT}: \Pi X: \mathsf{CN}\ \Pi p: X \rightarrow \operatorname{Prop}\ \Pi Y: \mathsf{CN}\ \Pi y: Y. Prop$
+
+这个式子定义了一个否定算符 `NOT`，它是一个依赖类型的函数，接受四个参数，并返回一个命题（`Prop`）类型的结果。这四个参数分别是：
+
+1. `X`：一个公共名词（`CN`）类型的参数，例如 "dog" 或 "book"。
+2. `p`：一个从 `X` 到 `Prop` 的函数，即一个将 `X` 类型的元素映射到命题的函数。这可以被视为一个谓词，例如 "is running" 或 "is red"。
+3. `Y`：另一个公共名词（`CN`）类型的参数，例如 "cat" 或 "table"。
+4. `y`：一个 `Y` 类型的元素，例如特定的 "cat" 或 "table"。
+
+这个函数的返回类型是 `Prop`，表示它返回一个命题。在这个上下文中，这个命题可能是 "y 不满足 p" 或 "y 不是 X"。
+
+这个函数的定义体（即它如何根据输入参数计算结果）没有在这个式子中给出，但通常会在定义 `NOT` 的地方给出。例如，它可能会定义为 "对于所有的 `x`，如果 `x` 是 `X` 并且 `p(x)` 是真的，那么 `y` 不是 `x`"。
