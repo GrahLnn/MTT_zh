@@ -874,3 +874,19 @@ Ranta（1994）在他的作品中（第62-64页）提出了这个问题，称之
 在这里，"membership"指的是一个对象是否属于某个特定类型或类别。当我们谈论一个对象的"membership"时，我们实际上是在评估这个对象是否满足成为某个特定类型或类别成员的条件。
 
 在你引用的这段文字中，"the standard of membership"指的是成为某个特定类型（在这里是名词类型，或者更具体地说，是可度量名词类型）成员的标准或条件。这些条件可能涉及到对象在名词的各个维度上的相似度度量，这些度量可能被加权求和或者以其他方式组合，以确定对象是否满足成为该类型成员的标准。
+
+---
+
+> 那么我们将如何处理MTTs中的这类副词呢？首先要看的是本体论。更具体地说，要看的是方式如何表示。我们在这里要追求的想法是基于Luo和Soloviev（2017）提出的依赖事件类型，并将在第7.2节中进行讨论。主要的直观理解是，事件可以依赖于一个或多个主题关系。例如，对于 $a:Agent$ ，我们可以形成 $E v t_{A}(a)$ ，即依赖于代理的事件类型。对于方式也可以做同样的处理，假设方式可以视为一种主题关系。因此，对于 $m:Manner$ ，我们可以形成 $Evt_{M}(m)$ ，即依赖于方式的事件类型。在这样的设定中，谓词将是什么样子？非依赖事件中的普通谓词可以假定为类型 $A \rightarrow Event \rightarrow Prop$（其中 $A: \mathsf{CN}$ ）。因此，一个依赖于方式的事件的谓词将是类型 $(A \rightarrow Evt_{M}(m) \rightarrow Prop)$ ，而方式副词将是多态的谓词修饰符，具有以下类型： (4.57) $ADV_{manner} : \Pi m: Manner. \Pi A: \mathsf{CN}. (A \rightarrow Evt_M(m) \rightarrow Prop ) \rightarrow \left(A \rightarrow E v t_M(m) \rightarrow\right. Prop )$ 将这些放一块，像"难以辨认地[illegibly]"这样的副词可以定义如下：对于任意 $P: A \rightarrow \operatorname{Evt}_{M}(m) \rightarrow \operatorname{Prop}$ , $x: A$ 和 $E: E v t_{M}(m)$ , (4.58) $illegibly (P, x, E)=P(x, E) \wedge illegible (E)$ , 其中 $illegible:\operatorname{Evt}_{M}(m) \rightarrow Prop$ 。毋庸置疑，与方式副词相关的真实推理由上述条目所捕捉。例如，上述定义将预测出像“他写[he wrote]”这样的句子总是跟随着“他写得难以辨认[he wrote illegibly]”。
+
+这段文字主要在讨论如何在类型理论（特别是MTT）中处理副词，特别是表示方式的副词，如"illegibly"（难以辨认地）。
+
+在这个框架中，事件被视为可以依赖于一个或多个主题关系的类型。例如，一个事件可以依赖于一个代理（Agent），也可以依赖于一个方式（Manner）。这种依赖关系可以用类型来表示，例如，依赖于代理的事件类型可以表示为$Evt_{A}(a)$，依赖于方式的事件类型可以表示为$Evt_{M}(m)$。
+
+谓词（predicate）在这个框架中是用来描述事件的。对于非依赖事件，谓词可以假定为类型$A \rightarrow Event \rightarrow Prop$。对于依赖于方式的事件，谓词将是类型$(A \rightarrow Evt_{M}(m) \rightarrow Prop)$。这里的$A$是名词类型，$Prop$是命题类型。
+
+方式副词在这个框架中被视为多态的谓词修饰符，具有类型$\Pi m: Manner. \Pi A: \mathsf{CN}. (A \rightarrow Evt_M(m) \rightarrow Prop ) \rightarrow \left(A \rightarrow E v t_M(m) \rightarrow\right. Prop )$。这里的$\Pi$表示多态性，即这个修饰符可以接受任何方式和名词类型，并返回一个新的谓词。
+
+例如，副词"illegibly"（难以辨认地）可以定义为对于任意$P: A \rightarrow \operatorname{Evt}_{M}(m) \rightarrow \operatorname{Prop}$，$x: A$ 和 $E: E v t_{M}(m)$，$illegibly (P, x, E)=P(x, E) \wedge illegible (E)$。这里的$illegible:\operatorname{Evt}_{M}(m) \rightarrow Prop$是一个谓词，表示事件$E$是难以辨认的。
+
+这种定义可以捕捉到与方式副词相关的真实推理。例如，如果一个人以难以辨认的方式写（"he wrote illegibly"），那么我们可以推断他写了（"he wrote"）。
