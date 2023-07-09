@@ -890,3 +890,21 @@ Ranta（1994）在他的作品中（第62-64页）提出了这个问题，称之
 例如，副词"illegibly"（难以辨认地）可以定义为对于任意$P: A \rightarrow \operatorname{Evt}_{M}(m) \rightarrow \operatorname{Prop}$，$x: A$ 和 $E: E v t_{M}(m)$，$illegibly (P, x, E)=P(x, E) \wedge illegible (E)$。这里的$illegible:\operatorname{Evt}_{M}(m) \rightarrow Prop$是一个谓词，表示事件$E$是难以辨认的。
 
 这种定义可以捕捉到与方式副词相关的真实推理。例如，如果一个人以难以辨认的方式写（"he wrote illegibly"），那么我们可以推断他写了（"he wrote"）。
+
+---
+
+> 重组以下语言，给定类型 $A$ 和 $B$ ，只有当 $A$ 和 $B$ 没有共同部分（正式称之为组件[components]）时，我们才能形成点类型 $A \bullet B$ 。例如，$\mathrm{{P\small HY}} \bullet \mathrm{{I\small NFO}}$ 是合法的点类型，而 $\mathrm{{P\small HY}}\bullet(\mathrm{{P\small HY}} \bullet \mathrm{{I\small NFO}})$ 是不合法的，因为在后者中，构成型 $\mathrm{{P\small HY}}$ 和 $\mathrm{{P\small HY}} \bullet \mathrm{{I\small NFO}}$ 共享了公共部分$\mathrm{{P\small HY}}$ 。此外，请注意点类型 $A \bullet B $ 同时也是其两个组成类型 $A $ 和 $B $ 的子类型。还要注意整个点类型形成基于组件概念。其定义如下： 定义 5.1（组件）。- 设 $T : Type$ 是一个空语境中的类型。那么，$\mathcal{C}(T)$，即 $T$ 的组件集合，定义为： 
+>
+> $$ \mathcal{C}(T)={ }_{d f} \begin{cases}\mathrm{S\small UP}(T) & \text { if the normal form of } T \text { is not of the form } X \bullet Y \\ \mathcal{C}\left(T_{1}\right) \cup \mathcal{C}\left(T_{2}\right) & \text { if the normal form of } T \text { is } T_{1} \bullet T_{2}\end{cases} $$ 
+>
+> 其中 $\mathrm{S\small UP}(T)=\left\{T^{\prime} \mid T \leq T^{\prime}\right\}$
+
+这个公式定义了一个类型的"组件"（components）集合。组件是构成类型的基本元素。
+
+这个定义有两部分：
+
+1. 如果类型 $T$ 的正规形式（normal form）不是 $X \bullet Y$ 的形式，那么 $T$ 的组件集合就是 $T$ 的上集（superset），记作 $\mathrm{SUP}(T)$。上集是指包含 $T$ 的所有类型的集合，即 $\mathrm{SUP}(T)=\left\{T^{\prime} \mid T \leq T^{\prime}\right\}$。
+
+2. 如果类型 $T$ 的正规形式是 $T_{1} \bullet T_{2}$，那么 $T$ 的组件集合就是 $T_{1}$ 的组件集合和 $T_{2}$ 的组件集合的并集，即 $\mathcal{C}\left(T_{1}\right) \cup \mathcal{C}\left(T_{2}\right)$。
+
+这个定义的目的是为了确定一个类型的所有组件，以便于判断一个点类型（dot-type）是否合法。只有当一个点类型的两个组成类型没有共同的组件时，这个点类型才是合法的。
