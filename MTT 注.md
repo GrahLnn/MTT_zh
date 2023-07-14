@@ -893,7 +893,7 @@ Ranta（1994）在他的作品中（第62-64页）提出了这个问题，称之
 
 ---
 
-> 重组以下语言，给定类型 $A$ 和 $B$ ，只有当 $A$ 和 $B$ 没有共同部分（正式称之为组件[components]）时，我们才能形成点类型 $A \bullet B$ 。例如，$\mathrm{{P\small HY}} \bullet \mathrm{{I\small NFO}}$ 是合法的点类型，而 $\mathrm{{P\small HY}}\bullet(\mathrm{{P\small HY}} \bullet \mathrm{{I\small NFO}})$ 是不合法的，因为在后者中，构成型 $\mathrm{{P\small HY}}$ 和 $\mathrm{{P\small HY}} \bullet \mathrm{{I\small NFO}}$ 共享了公共部分$\mathrm{{P\small HY}}$ 。此外，请注意点类型 $A \bullet B $ 同时也是其两个组成类型 $A $ 和 $B $ 的子类型。还要注意整个点类型形成基于组件概念。其定义如下： 定义 5.1（组件）。- 设 $T : Type$ 是一个空语境中的类型。那么，$\mathcal{C}(T)$，即 $T$ 的组件集合，定义为： 
+> 重组一下语言，给定类型 $A$ 和 $B$ ，只有当 $A$ 和 $B$ 没有共同部分（正式称之为组件[components]）时，我们才能形成点类型 $A \bullet B$ 。例如，$\mathrm{{P\small HY}} \bullet \mathrm{{I\small NFO}}$ 是合法的点类型，而 $\mathrm{{P\small HY}}\bullet(\mathrm{{P\small HY}} \bullet \mathrm{{I\small NFO}})$ 是不合法的，因为在后者中，构成型 $\mathrm{{P\small HY}}$ 和 $\mathrm{{P\small HY}} \bullet \mathrm{{I\small NFO}}$ 共享了公共部分$\mathrm{{P\small HY}}$ 。此外，请注意点类型 $A \bullet B $ 同时也是其两个组成类型 $A $ 和 $B $ 的子类型。还要注意整个点类型形成基于组件概念。其定义如下： 定义 5.1（组件）。- 设 $T : Type$ 是一个空语境中的类型。那么，$\mathcal{C}(T)$，即 $T$ 的组件集合，定义为： 
 >
 > $$ \mathcal{C}(T)={ }_{d f} \begin{cases}\mathrm{S\small UP}(T) & \text { if the normal form of } T \text { is not of the form } X \bullet Y \\ \mathcal{C}\left(T_{1}\right) \cup \mathcal{C}\left(T_{2}\right) & \text { if the normal form of } T \text { is } T_{1} \bullet T_{2}\end{cases} $$ 
 >
@@ -908,3 +908,56 @@ Ranta（1994）在他的作品中（第62-64页）提出了这个问题，称之
 2. 如果类型 $T$ 的正规形式是 $T_{1} \bullet T_{2}$，那么 $T$ 的组件集合就是 $T_{1}$ 的组件集合和 $T_{2}$ 的组件集合的并集，即 $\mathcal{C}\left(T_{1}\right) \cup \mathcal{C}\left(T_{2}\right)$。
 
 这个定义的目的是为了确定一个类型的所有组件，以便于判断一个点类型（dot-type）是否合法。只有当一个点类型的两个组成类型没有共同的组件时，这个点类型才是合法的。
+
+---
+
+> 注意，在通常的非共谓情况下，相关名词之间的关系类似于“男人”和“人类”的关系：一个领域是另一个的子类型（如 $Man \leq Human$）。因此，其中一个名词继承了另一个名词的内涵条件，在相同意义上 $=_{M}$（名词 "man" 的内涵条件）继承了 $=_{H}$（名词 "human" 的内涵条件）。这种继承关系在许多情况下都会发生。这样的例子包括“男人”和“人类”，“红色桌子”和“桌子”，以及其他许多例子。为这种关系提供一个名称可能会很有用。以下定义完全相同。
+>
+> **定义 5.2（子集型[Sub-setoid]）**：我们说一个集合 $\mathsf{A}=(A,=_\mathsf{A})$ 是 $\mathsf{B}=(B, =_{\mathsf{B}})$ 的子集型，记作 $\mathsf{A} \sqsubseteq \mathsf{B}$，如果 $A \leq B$ 且 $=_{\mathsf{A}}$ 和 $\left.(=_\mathsf{B})\right|_{A}$ 相同（即 $=_\mathsf{B}$ 在 $A$ 上的限制）。我们通常用 $=_\mathsf{B}$ 来表示 $(=_{\mathsf{B}})|_{A}$ ，省略了限制运算符。
+>
+> 例如，除了 $\mathsf{M\small AN}\sqsubseteq \mathsf{H\small UMAN}$ 之外，我们还有$(RTable,=_{t}) \sqsubseteq( Table, =_t)$。其中 $R Table$ 是类型 $\Sigma x: Table.red (x)$ 表示红色桌子的域，而 $=_{t}$ 则表示桌子的等价关系（也继承给红色桌子）的辨衡。请注意，在像 $Man$ 或 $RTable$ 这样受限制的域中，辨衡与 $Human$ 和 $Table$ 的相同，并且在这种情况下，它们本质上是相同的，因此我们可以安全地忽略它们，并研究相关示例。
+
+这段话在讨论子集型（Sub-setoid）的概念。子集型是一种特殊的集合关系，其中一个集合（称为子集型）是另一个集合的子集，并且子集型的等价关系（即集合中元素的相等性判断）与其父集合的等价关系在子集型的范围内是相同的。
+
+例如，考虑 "Man" 和 "Human" 这两个集合。"Man" 是 "Human" 的子集，因为所有的 "Man" 都是 "Human"。同时，"Man" 集合的等价关系（即判断两个 "Man" 是否相等的规则）在 "Human" 集合中也是有效的。这就意味着 "Man" 是 "Human" 的子集型。
+
+另一个例子是 "Red Table" 和 "Table"。"Red Table" 是所有红色的桌子的集合，它是 "Table" 的子集，因为所有的 "Red Table" 都是 "Table"。同时，"Red Table" 集合的等价关系（即判断两个 "Red Table" 是否相等的规则）在 "Table" 集合中也是有效的。这就意味着 "Red Table" 是 "Table" 的子集型。
+
+这个概念在处理集合和子集时非常有用，因为它允许我们在处理子集时使用父集合的等价关系，这可以简化很多计算和推理过程。
+
+---
+
+> - complex objects are denoted with the + operator while plural objects with the $\oplus$ operator (assumes a join semilattice ála Link (1983));
+
+在这个句子中，"join semilattice ála" 是一个术语。它指的是一种数学结构，用于描述集合中元素之间的关系。
+
+具体来说，"join semilattice" 是一个数学概念，表示一个集合，在该集合上定义了一个二元操作（通常称为 "join"），并且满足结合律、交换律和吸收律等性质。这个操作可以将两个元素组合成一个更大的元素。
+
+而 "ála Link (1983)" 则是引用了作者 Link 在 1983 年发表的相关论文或著作。这里使用 "ála" 表示类似于或以...方式。
+
+整个句子的意思是：根据 Link (1983) 的观点，假设存在一种 join semilattice 结构。
+
+以下是几个与此相似含义的英语例句：
+
+1. The committee operates as a democracy á la ancient Greece.
+   这个委员会运作方式类似于古希腊时期的民主制度。
+
+2. She decorated her house in a minimalist style á la Scandinavian design.
+   她以斯堪地纳维亚设计风格装饰她的房子。
+
+---
+
+
+
+在这个句子中，"Lexical entries" 指的是词汇条目。它们是指词典或语法中对于特定单词的定义和描述。
+
+整个句子的意思是：在蒙塔古语法中，CI（常量解释）和动词的词汇条目比传统上所认为的更加复杂。它们不仅决定了扩展性质，还进一步规定了一个独立性标准。
+
+这里并没有使用到习语。但我可以给你一些类似含义的例子：
+
+1) "Glossary entries" 是指术语表中对特定术语进行定义和解释。
+2) "Dictionary definitions" 是指字典中对单词进行详细说明和定义。
+
+---
+
+> 
